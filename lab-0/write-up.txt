@@ -1,0 +1,4 @@
+6. When I delete the channel, I get an ECI not found error. This is because the ECI is used to determine which channel to use.
+7. When I send the event echo/hello, I get an object of data that is specified in the ruleset for this function. 
+8. When echo is mispelled, I get a not allowed by channel policy error. This is because the channel event policy only allows the use of echo and nothing else.
+9. There was no difference in output when using the ternary conditional. The || operator is preferable because it leads to more readable code and is easier to understand because this is a simple use of a conditional.
