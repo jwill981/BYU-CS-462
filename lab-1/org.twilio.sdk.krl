@@ -11,9 +11,10 @@ ruleset org.twilio.sdk {
     global {
         baseUrl = "https://api.twilio.com/2010-04-01"
 
-        getMessages = function() {
+        getMessages = function(to, from) {
+            body = {"To": to, "From": from}
             response = http:get(<<#{baseUrl}/Accounts/#{accountSID}/Messages.json>>
-                , auth={"username":accountSID, "password":authToken})
+                , qs=body, auth={"username":accountSID, "password":authToken})
             response{"content"}.decode()
         }
 

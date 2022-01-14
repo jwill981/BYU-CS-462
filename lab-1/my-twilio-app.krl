@@ -13,8 +13,8 @@ ruleset my-twilio-app {
     }
 
     global {
-        getMessages = function() {
-            twilio:getMessages()
+        getMessages = function(to, from) {
+            twilio:getMessages(to, from)
         }
     }
 
