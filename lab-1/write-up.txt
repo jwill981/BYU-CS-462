@@ -1,0 +1,8 @@
+1.  This is because the function is a get request and the action 
+    is a post request. Both use different variables that scoped 
+    statically not dynamically. The function reads state and the 
+    action sets state.
+2.  That way the module wouldn't be dependent on anything. If we 
+    were to push this module out, any could look at it and get the keys
+    out of it. This means that a person has to pass their own keys into 
+    the module.
