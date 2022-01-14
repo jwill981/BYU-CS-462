@@ -5,8 +5,8 @@ ruleset my-movie-app {
 
         use module org.themoviedb.sdk alias sdk
             with
-              apiKey = "5e4af8d41cff8588281aee64004e09ca"
-              sessionID = "1234"
+              apiKey = meta:rulesetConfig{"movie-db-api-key"}
+              sessionID = meta:rulesetConfig{"movie-dv-session-id"}
         
         shares getPopular 
     }
