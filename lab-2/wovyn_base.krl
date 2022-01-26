@@ -10,9 +10,9 @@ ruleset wovyn_base {
     }
 
     rule process_heartbeat {
-        select when wovyn heartbeat
+        select when wovyn heartbeat where event:attr("genericThing") != null
         pre {
-            msg = "I got a temp read!"
+            msg = "I am in the base class and got a temp read!"
         }
 
         send_directive(msg)
