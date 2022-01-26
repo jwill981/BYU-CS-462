@@ -9,6 +9,12 @@ ruleset io.picolabs.wovyn.emitter {
     use module io.picolabs.wrangler alias wrangler
     
     shares schedule, heartbeat_period, operating_state, my_rid
+
+    use module org.twilio.sdk alias twilio
+            with
+              accountSID = meta:rulesetConfig{"twilio-account-sid"}
+              authToken = meta:rulesetConfig{"twilio-auth-token"}
+              serviceSID = meta:rulesetConfig{"twilio-message-service-sid"}
   }
 
   global {
