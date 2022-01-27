@@ -1,0 +1,19 @@
+1.  I used a rule conditional statement. The advantage of this is that 
+    the conditional is evaluated in the select statement rather than farther
+    down in the rule.
+2.  An advantage for a channel for each sensor would be you would be able to 
+    keep track of which sensor is sending data. You could also customize each 
+    sensor as needed. Also, they are all independent from each other.
+3.  The output was the genericThing object. Only one directive was returned since 
+    that is the first rule that is called by the emitter. At least 2 rules ran. One in the emitter
+    and one in the base ruleset.
+4.  The output was the temperature in farenheight and a timestamp. 2 directive were returned. At least 
+    3 rules ran. One in the emitter and 2 in the base ruleset.
+5.  
+6.  I would say yes because all the rule does if check a condition and then raise another event.
+    This pattern is an abstract event expression because it takes what could be a complext rule
+    and splits it into simple parts.
+7.  I know it works because I log out the sensor temp:
+    05:20:36.836Z [KLOG] temp from sensor:  60
+    I also know because I log a message when the rule even is raised:
+    05:29:56.185Z [KLOG] I called violation rule! {"temperature":80}

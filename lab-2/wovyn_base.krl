@@ -33,7 +33,7 @@ ruleset wovyn_base {
         select when wovyn new_temperature_reading
         
         pre {
-            temp = event:attrs{"temperature"}.get(["temperatureF"])
+            temp = event:attrs{"temperature"}.get(["temperatureF"]).klog("temp from sensor: ")
         }
 
         send_directive(temp)
@@ -41,7 +41,7 @@ ruleset wovyn_base {
         always {
             raise wovyn event "threshold_violation" attributes {
                 "temperature": temp
-            }
+            }.klog("I called violation rule!")
             if temperature_threshold < temp
         }
 
