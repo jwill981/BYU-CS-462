@@ -54,9 +54,5 @@ ruleset wovyn_base {
         }
         
         twilio:sendMessage(phone_number, message) setting(response)
-        fired {
-            ent:lastResponse := response
-            ent:lastTimestamp := time:now()
-        }
     }
 }
