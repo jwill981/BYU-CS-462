@@ -34,13 +34,15 @@ ruleset wovyn_base {
         
         pre {
             temp = event:attrs{"temperature"}.get(["temperatureF"]).klog("temp from sensor: ")
+            timestamp = event:attrs{"timestamp"}
         }
 
         send_directive(temp)
 
         always {
             raise wovyn event "threshold_violation" attributes {
-                "temperature": temp
+                "temperature": temp,
+                "timestamp" : timestamp
             }.klog("I called violation rule!")
             if temperature_threshold < temp
         }
