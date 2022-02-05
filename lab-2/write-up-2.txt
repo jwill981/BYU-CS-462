@@ -1,0 +1,14 @@
+1.  The collect_temperatures rule and temperatures function work
+    as an event-query API because the ruleset is installed on a 
+    pico with the wovyn emiiter. When that ruleset raises an event, 
+    the temperature_store ruleset will select a rule. 
+
+2.  To find temperatures that are in range, I use the difference set operator because
+    I store the data in 2 arrays. This finds the set of all members of allTemps that 
+    are not members of thresholdViolations.
+
+3.  If we didn't list the temperatures function in provides, then we wouldn't 
+    be able to use that function in another ruleset.
+
+4. If we didn't list the temperatures function in shares, then the functions would
+    only be able to be called from its own ruleset.
