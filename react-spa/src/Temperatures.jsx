@@ -68,7 +68,7 @@ export class Temperatures extends Component {
 
                     <div className="col-md-4">
                         <h1>Threshold Violations:</h1>
-                        { this.state.violations.map(violation => (
+                        { this.state.violations && this.state.violations.map(violation => (
                             <div>
                                 <h4>{violation.temp} F</h4>
                                 <p>{violation.timestamp}</p>
@@ -78,7 +78,7 @@ export class Temperatures extends Component {
 
                     <div className="col-md-4">
                         <h1>All Temps:</h1>
-                        { this.state.temps.map(temp => (
+                        { this.state.temps && this.state.temps.map(temp => (
                             <div>
                                 <h4>{temp.temp} F</h4>
                                 <p>{temp.timestamp}</p>
