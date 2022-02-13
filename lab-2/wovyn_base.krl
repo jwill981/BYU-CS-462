@@ -68,7 +68,7 @@ ruleset wovyn_base {
                 "temperature": temp,
                 "timestamp" : timestamp
             }.klog("I called violation rule!")
-            if ent:threshold || 75 < temp
+            if ent:threshold.defaultsTo(75) < temp
         }
 
     }

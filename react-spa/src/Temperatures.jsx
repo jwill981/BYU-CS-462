@@ -48,20 +48,29 @@ export class Temperatures extends Component {
             )
     }
 
+    onClick(){
+        window.location = "/profile"
+    }
+
     render() {
         return (
             <div className="container" >
                 <div className="row">
+                    <div className="col-md text-center m-5">
+                        <button className="btn btn-link" onClick={this.onClick}>SENSOR PROFILE</button>
+                    </div>
+                </div>
+                <div className="row">
                     <div className="col-md-4">
                         <h1>Current Temp:</h1>
-                        <h4>{this.state.currTemp}</h4>
+                        <h4>{this.state.currTemp} F</h4>
                     </div>
 
                     <div className="col-md-4">
                         <h1>Threshold Violations:</h1>
                         { this.state.violations.map(violation => (
                             <div>
-                                <h4>{violation.temp}</h4>
+                                <h4>{violation.temp} F</h4>
                                 <p>{violation.timestamp}</p>
                             </div>
                         ))}

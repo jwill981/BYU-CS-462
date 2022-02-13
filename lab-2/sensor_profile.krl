@@ -24,7 +24,16 @@ ruleset sensor_profile {
             name = event:attrs{"name"}
             smsNum = event:attrs{"smsNum"}
             threshold = event:attrs{"threshold"}
+            data = {
+                "name": name,
+                "location": location,
+                "smsNum": smsNum,
+                "threshold": threshold
+            }
         }
+
+        send_directive(data)
+
         always {
             ent:location := location
             ent:name := name
@@ -37,6 +46,7 @@ ruleset sensor_profile {
             raise wovyn event "set_threshold" attributes {
                 "threshold": threshold
             }
+            raise sensor event "reading_reset"
         }
     }
 }

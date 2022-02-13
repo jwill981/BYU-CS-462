@@ -1,12 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import Temperatures from "./Temperatures";
+import Profile from "./Profile";
 
 
 function App() {
   return (
-    <Temperatures />
+    <BrowserRouter>
+        <Route path="/" exact component={Temperatures} />
+        <Route path="/profile" exact component={Profile} />
+    </BrowserRouter>
   );
 }
 
