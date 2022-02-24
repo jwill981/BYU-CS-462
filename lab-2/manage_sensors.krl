@@ -3,6 +3,7 @@ ruleset manage_sensors {
         use module io.picolabs.wrangler alias wrangler
 
         shares sensors, nameFromID, showChildren, getChildTemps
+        provides nameFromID
     }
     global{
         nameFromID = function(sensor_id) {
@@ -62,7 +63,7 @@ ruleset manage_sensors {
             sensor_name = event:attrs{"name"}
             sms = event:attrs{"sms"}
         }
-        if not exists then noop()
+        if not exists then send_directive("creating new sensor")
         fired {
             raise wrangler event "new_child_request"
             attributes { "name": nameFromID(sensor_id),

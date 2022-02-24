@@ -1,0 +1,11 @@
+1.  I have a global variable that is an array of strings that 
+    has the necessary RIDs for a new child pico. I loop through
+    that array and send an install ruleset request to the child 
+    to install the ruleset.
+2.  I raised the wrangler child initialized event to ensure the child
+    was ready to raise events to it. 
+3.  I used postman and called different urls to create and delete children.
+    I then waited for a text due to a threshold violation to ensure the 
+    children behaved as expected.
+4.  When the child is initialized I can give it an array of other sensors.
+    When a new sensor is added I can send an updated array to all children.
