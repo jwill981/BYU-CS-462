@@ -82,9 +82,9 @@ ruleset manage_sensors {
           sensor_id = event:attrs{"sensor_id"}
 
           config = {
-            "twilio-account-sid":"AC80d8ba0bece312ee13064775dc69ad91",
-            "twilio-auth-token":"3639d8d6613a01decb171f88f3acf525",
-            "twilio-message-service-sid":"MG3202427781a18063f819df0c1034c8f8",
+            "twilio-account-sid":meta:rulesetConfig{"twilio-account-sid"},
+            "twilio-auth-token":meta:rulesetConfig{"twilio-auth-token"},
+            "twilio-message-service-sid":meta:rulesetConfig{"twilio-message-service-sid"},
           }
         }
 
