@@ -18,6 +18,23 @@ ruleset wovyn_base {
         }
     }
 
+    // rule initialize_state {
+    //     select when wrangler ruleset_installed
+    //       where event:attrs{"rids"} >< meta:rid
+    //     pre {
+    //         threshold = meta:rulesetConfig{"default_threshold"}.klog("threshold: ")
+    //         name = meta:rulesetConfig{"name"}
+    //         smsNum = meta:rulesetConfig{"smsNum"}
+    //     }
+    //     always {
+    //         ent:threshold := threshold
+    //         raise sensor event "profile_updated" attributes {
+    //             "name": name,
+    //             "smsNum": smsNum
+    //         }
+    //     }
+    // }
+
     rule set_threshold {
         select when wovyn set_threshold
         pre {
@@ -68,7 +85,7 @@ ruleset wovyn_base {
                 "temperature": temp,
                 "timestamp" : timestamp
             }.klog("I called violation rule!")
-            if ent:threshold.defaultsTo(75) < temp
+            if ent:threshold < temp
         }
 
     }
@@ -79,6 +96,6 @@ ruleset wovyn_base {
             message = "Temperature threshold violation! temp: " + event:attrs{"temperature"} + " threshold: " + ent:threshold || 75
         }
         
-        twilio:sendMessage(ent:phone_number || "8438267813", message)
+        twilio:sendMessage(ent:phone_number.klog("phone number: "), message)
     }
 }
