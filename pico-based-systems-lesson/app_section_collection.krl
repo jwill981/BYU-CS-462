@@ -2,7 +2,7 @@ ruleset app_section_collection {
     meta {
         use module io.picolabs.wrangler alias wrangler
 
-        shares nameFromID, showChildren, sections
+        shares nameFromID, showChildren, sections, wellKnown_Rx
     }
 
     global {
@@ -16,6 +16,12 @@ ruleset app_section_collection {
 
         sections = function() {
             ent:sections
+        }
+
+        wellKnown_Rx = function(section_id) {
+          eci = ent:sections{[section_id,"eci"]}
+          eci.isnull() => null
+            | ctx:query(eci,"io.picolabs.subscription","wellKnown_Rx"){"id"}
         }
     }
 
@@ -89,6 +95,16 @@ ruleset app_section_collection {
             attributes {"eci": eci_to_delete};
           clear ent:sections{section_id}
         }
+    }
+
+    rule accept_wellKnown {
+      select when section identify
+        section_id re#(.+)#
+        wellKnown_eci re#(.+)#
+        setting(section_id,wellKnown_eci)
+      fired {
+        ent:sections{[section_id,"wellKnown_eci"]} := wellKnown_eci
+      }
     }
     
 }
